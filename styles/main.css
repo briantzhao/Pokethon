@@ -1,0 +1,93 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.gamescreen {
+  width: 60vw;
+  height: 30vw;
+  border: 1px solid black;
+  margin: 10vw auto;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.hpbar, .me-hpbar {
+  border: 1px solid black;
+  width: 15vw;
+  height: 1rem;
+  position: relative;
+}
+
+.pokeponent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+}
+
+.pokeme {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+}
+
+.hpleft, .me-hpleft {
+  position: absolute;
+  width: 15vw;
+  height: 1rem;
+  background-color: green;
+}
+
+.moves {
+  display: flex;
+  justify-content: space-between;
+  width: 60vw;
+  height: 10vw;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.move1,
+.move2,
+.move3,
+.move4 {
+  width: 50%;
+  border: 1px solid black;
+}
+
+.choice {
+  width: 60vw;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.water {
+  background-color: blue;
+}
+
+.fire {
+  background-color: orangered;
+}
+
+.normal {
+  background-color: moccasin;
+}
+
+.ground {
+  background-color: brown;
+}
+
+.ice {
+  background-color: aqua;
+}
+
+.flying {
+  background-color: cadetblue;
+}
+
+.fighting {
+  background-color: sandybrown;
+}/*# sourceMappingURL=main.css.map */
