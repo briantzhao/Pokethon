@@ -1,15 +1,49 @@
+@font-face {
+  font-family: "PokeFont";
+  src: url("../assets/fonts/PKMN\ RBYGSC.ttf");
+}
+@keyframes pokemonMove {
+  33% {
+    right: 10px;
+  }
+  66% {
+    left: 10px;
+    right: 0px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+@keyframes pokemonDamage {
+  25% {
+    opacity: 100;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 100;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
+  font-family: "PokeFont";
 }
 //gamescreen styling
 .gamescreen {
-  width: 60vw;
-  height: 30vw;
+  width: 40vw;
+  height: 20vw;
   border: 1px solid black;
   margin: 10vw auto;
   margin-bottom: 0;
   position: relative;
+  padding: 1rem;
 }
 .hpbar {
   border: 1px solid black;
@@ -24,14 +58,28 @@
   position: absolute;
   top: 0;
   right: 0;
+  margin: 1rem;
   display: flex;
+  &-pic {
+    position: relative;
+    &:hover {
+      animation: pokemonDamage 0.5s;
+    }
+  }
 }
 .pokeme {
   position: absolute;
   bottom: 0;
   left: 0;
+  margin: 1rem;
   display: flex;
   width: 100%;
+  &-pic {
+    position: relative;
+    &:hover {
+      animation: pokemonDamage 0.5s;
+    }
+  }
 }
 .hpleft {
   position: absolute;
@@ -44,7 +92,7 @@
 }
 //combat log styling
 .combat-log {
-  width: 60vw;
+  width: 40vw;
   height: 10vw;
   margin: 0 auto;
   border: 1px solid black;
@@ -54,9 +102,10 @@
 .moves {
   display: flex;
   justify-content: space-between;
-  width: 60vw;
+  width: 40vw;
   height: 10vw;
   margin: 0 auto;
+  margin-bottom: 10vw;
   flex-wrap: wrap;
 }
 .move1,
@@ -65,9 +114,10 @@
 .move4 {
   width: 50%;
   border: 1px solid black;
+  padding: 1rem;
 }
 .choice {
-  width: 60vw;
+  width: 40vw;
   margin: 0 auto;
   text-align: center;
 }

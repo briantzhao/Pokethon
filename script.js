@@ -11,6 +11,7 @@ function Move(name, power, pp, type) {
   this.name = name;
   this.power = power;
   this.pp = pp;
+  this.ppMax = pp;
   this.type = type;
   this.use = function () {
     if (this.pp > 0) {
@@ -129,15 +130,40 @@ axios
     console.log(pokeMe.moves[0].name);
 
     //populate moves section
-    move1.innerText = `${pokeMe.moves[0].name} \n Power: ${pokeMe.moves[0].power} \n PP: ${pokeMe.moves[0].pp}`;
+    move1.innerText = `${pokeMe.moves[0].name.toUpperCase()} \n\n PP: ${
+      pokeMe.moves[0].pp
+    }/${pokeMe.moves[0].ppMax}`;
     move1.classList.add(pokeMe.moves[0].type);
-    move2.innerText = `${pokeMe.moves[1].name} \n Power: ${pokeMe.moves[1].power} \n PP: ${pokeMe.moves[1].pp}`;
+    move2.innerText = `${pokeMe.moves[1].name.toUpperCase()} \n\n PP: ${
+      pokeMe.moves[1].pp
+    }/${pokeMe.moves[1].ppMax}`;
     move2.classList.add(pokeMe.moves[1].type);
-    move3.innerText = `${pokeMe.moves[2].name} \n Power: ${pokeMe.moves[2].power} \n PP: ${pokeMe.moves[2].pp}`;
+    move3.innerText = `${pokeMe.moves[2].name.toUpperCase()} \n \n PP: ${
+      pokeMe.moves[2].pp
+    }/${pokeMe.moves[2].ppMax}`;
     move3.classList.add(pokeMe.moves[2].type);
-    move4.innerText = `${pokeMe.moves[3].name} \n Power: ${pokeMe.moves[3].power} \n PP: ${pokeMe.moves[3].pp}`;
+    move4.innerText = `${pokeMe.moves[3].name.toUpperCase()} \n \n PP: ${
+      pokeMe.moves[3].pp
+    }/${pokeMe.moves[3].ppMax}`;
     move4.classList.add(pokeMe.moves[3].type);
   })
+  // move1.innerText = `${pokeMe.moves[0].name.toUpperCase()} \n Power: ${
+  //   pokeMe.moves[0].power
+  // } \n PP: ${pokeMe.moves[0].pp}`;
+  // move1.classList.add(pokeMe.moves[0].type);
+  // move2.innerText = `${pokeMe.moves[1].name.toUpperCase()} \n Power: ${
+  //   pokeMe.moves[1].power
+  // } \n PP: ${pokeMe.moves[1].pp}`;
+  // move2.classList.add(pokeMe.moves[1].type);
+  // move3.innerText = `${pokeMe.moves[2].name.toUpperCase()} \n Power: ${
+  //   pokeMe.moves[2].power
+  // } \n PP: ${pokeMe.moves[2].pp}`;
+  // move3.classList.add(pokeMe.moves[2].type);
+  // move4.innerText = `${pokeMe.moves[3].name.toUpperCase()} \n Power: ${
+  //   pokeMe.moves[3].power
+  // } \n PP: ${pokeMe.moves[3].pp}`;
+  // move4.classList.add(pokeMe.moves[3].type);
+  //   })
   .catch((error) => {
     console.log(error);
   });
