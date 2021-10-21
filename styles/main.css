@@ -41,6 +41,13 @@
   background-color: green;
 }
 
+.combat-log {
+  width: 60vw;
+  height: 10vw;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+
 .moves {
   display: flex;
   justify-content: space-between;
