@@ -1,42 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- game screen -->
-<div class="gamescreen">
-<!-- opponent -->
-    <div class="pokeponent">
-        <div class="pokeinfo">
-        <p class="pokename">Charizard <span class="lvl">L50</span></p>
-        <div class="hpbar"><div class="hpleft"></div></div>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="shortcut icon" href="#" />
+  </head>
+  <body>
+    <div class="gameboy">
+      <!-- game screen -->
+      <div class="gameboy__gamescreen">
+        <!-- opponent -->
+        <div class="pokeponent">
+          <div class="pokeponent__container">
+            <p class="pokeponent--name">
+              Charizard <span class="pokeponent--lvl">L50</span>
+            </p>
+            <div class="pokeponent--hpbar">
+              <div class="pokeponent--hpleft"></div>
+            </div>
+          </div>
+          <img class="pokeponent--pic" />
         </div>
-        <img class="pokeponent-pic">
-    </div>
-    <!-- player -->
-    <div class="pokeme">
-        <div class="me-pokeinfo">
-        <p class="me-pokename">Blastoise <span class="lvl">L50</span></p>
-        <div class="me-hpbar"><div class="me-hpleft"></div></div>
+        <!-- player -->
+        <div class="pokeme">
+          <div class="pokeme__container">
+            <p class="pokeme--name">
+              Blastoise <span class="pokeme--lvl">L50</span>
+            </p>
+            <div class="pokeme--hpbar"><div class="pokeme--hpleft"></div></div>
+          </div>
+          <img class="pokeme--pic" />
         </div>
-        <img class="pokeme-pic">
+      </div>
+      <!-- combat log -->
+      <div class="combat-log">
+        <p class="attack"></p>
+        <button class="start-button">START</button>
+      </div>
+      <!-- pokemon moves -->
+      <h2 class="choice">Choose Your Move</h2>
+      <div class="moves">
+        <p class="move1"></p>
+        <p class="move2"></p>
+        <p class="move3"></p>
+        <p class="move4"></p>
+      </div>
     </div>
-</div>
-<!-- combat log -->
-<div class="combat-log"></div>
-<!-- pokemon moves -->
-<h2 class="choice">Choose Your Move</h2>
-<div class="moves">
-    <p class="move1"></p>
-    <p class="move2"></p>
-    <p class="move3"></p>
-    <p class="move4"></p>
-</div>
-<body>
+    <!-- <div class="power-on hide"></div> -->
+    <audio controls class="music music-battle">
+      <source
+        src="./assets/music/28 Battle! (Gym Leader Battle).mp3"
+        type="audio/mpeg"
+      />
+      Your browser does not support the audio element.
+    </audio>
+    <audio controls class="music music-win">
+      <source
+        src="./assets/music/12 Victory! (Trainer Battle).mp3"
+        type="audio/mpeg"
+      />
+      Your browser does not support the audio element.
+    </audio>
+    <audio controls class="music music-loss">
+      <source src="./assets/music/45 Pok‚mon Tower.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

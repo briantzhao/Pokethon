@@ -1,10 +1,14 @@
 apiURL = "https://pokeapi.co/api/v2/";
-const pokePonentSprite = document.querySelector(".pokeponent-pic");
-const pokeMeSprite = document.querySelector(".pokeme-pic");
+const pokePonentSprite = document.querySelector(".pokeponent--pic");
+const pokeMeSprite = document.querySelector(".pokeme--pic");
 const move1 = document.querySelector(".move1");
 const move2 = document.querySelector(".move2");
 const move3 = document.querySelector(".move3");
 const move4 = document.querySelector(".move4");
+
+let hpLeft = document.querySelector(".pokeponent--hpleft");
+let meHpLeft = document.querySelector(".pokeme--hpleft");
+const attackBox = document.querySelector(".attack");
 
 //move constructor
 function Move(name, power, pp, type) {
@@ -50,7 +54,6 @@ axios
     console.log(response.data);
     pokePonentSprite.src = response.data.sprites.front_default;
     const pokePonentMoves = movesBank[response.data.name];
-    console.log(pokePonentMoves);
 
     //instantiate most of opponent
     pokePonent = new Pokemon(
@@ -67,6 +70,7 @@ axios
     );
   })
   .then((responses) => {
+    console.dir(responses);
     //filter move data so we get the pieces we need
     const pokePonentMoveset = responses.map((response) => {
       const createdMove = new Move(
@@ -77,11 +81,10 @@ axios
       );
       return createdMove;
     });
-    console.log(pokePonentMoveset);
+    console.dir(pokePonentMoveset);
 
     //insert moves data to opponent object
     pokePonent.moves = pokePonentMoveset;
-    console.log(pokePonent);
   })
   .catch((error) => {
     console.log(error);
@@ -94,7 +97,6 @@ axios
     console.log(response.data);
     pokeMeSprite.src = response.data.sprites.back_default;
     const pokePonentMoves = movesBank[response.data.name];
-    console.log(pokePonentMoves);
 
     //instantiate most of blastoise
     pokeMe = new Pokemon(
@@ -113,6 +115,7 @@ axios
 
   //filter moves info we need
   .then((responses) => {
+    console.dir(responses);
     const pokePonentMoveset = responses.map((response) => {
       const createdMove = new Move(
         response.data.name,
@@ -122,48 +125,128 @@ axios
       );
       return createdMove;
     });
-    console.log(pokePonentMoveset);
 
     //insert moves data for player (borrowed variables from above call)
     pokeMe.moves = pokePonentMoveset;
-    console.log(pokeMe);
-    console.log(pokeMe.moves[0].name);
 
-    //populate moves section
-    move1.innerText = `${pokeMe.moves[0].name.toUpperCase()} \n\n PP: ${
-      pokeMe.moves[0].pp
-    }/${pokeMe.moves[0].ppMax}`;
-    move1.classList.add(pokeMe.moves[0].type);
-    move2.innerText = `${pokeMe.moves[1].name.toUpperCase()} \n\n PP: ${
-      pokeMe.moves[1].pp
-    }/${pokeMe.moves[1].ppMax}`;
-    move2.classList.add(pokeMe.moves[1].type);
-    move3.innerText = `${pokeMe.moves[2].name.toUpperCase()} \n \n PP: ${
-      pokeMe.moves[2].pp
-    }/${pokeMe.moves[2].ppMax}`;
-    move3.classList.add(pokeMe.moves[2].type);
-    move4.innerText = `${pokeMe.moves[3].name.toUpperCase()} \n \n PP: ${
-      pokeMe.moves[3].pp
-    }/${pokeMe.moves[3].ppMax}`;
-    move4.classList.add(pokeMe.moves[3].type);
+    let i = 1;
+
+    pokeMe.moves.forEach((move) => {
+      const moveBox = document.querySelector(`.move${i}`);
+      i++;
+      moveBox.innerText = `${move.name.toUpperCase()}\n PP: ${move.pp}/${
+        move.ppMax
+      }`;
+      moveBox.classList.add(move.type);
+      moveBox.addEventListener("click", (event) => {
+        pokePonentSprite.classList.remove("idle");
+        pokeMeSprite.classList.remove("idle");
+        console.log(move);
+        attackBox.innerText = `Blastoise used ${move.name}. `;
+        const moveNum = event.target.classList[0].slice(-1) - 1;
+        pokeMe.moves[moveNum].pp--;
+        moveBox.innerText = `${move.name.toUpperCase()}\n PP: ${move.pp}/${
+          move.ppMax
+        }`;
+        pokeMeSprite.classList.add("attackMe");
+
+        if (move.type === "water") {
+          pokePonentSprite.classList.add("damage");
+          if (hpLeft.offsetWidth > 32) {
+            hpLeft.style.width = `${hpLeft.offsetWidth - 64}px`;
+          } else {
+            hpLeft.style.width = `${hpLeft.offsetWidth - 32}px`;
+          }
+          // console.log(typeof hpLeft.offsetWidth);
+          attackBox.innerText = attackBox.innerText + ` Super effective!`;
+        } else if (move.type === "ground") {
+          attackBox.innerText = attackBox.innerText + ` Nothing happened.`;
+        } else {
+          pokePonentSprite.classList.add("damage");
+          hpLeft.style.width = `${hpLeft.offsetWidth - 32}px`;
+        }
+        //return to idle
+        setTimeout(() => {
+          pokePonentSprite.classList.add("idle");
+          pokeMeSprite.classList.add("idle");
+        }, 1000);
+        pokeMeSprite.classList.remove("damage");
+        pokePonentSprite.classList.remove("attackOp");
+        if (hpLeft.offsetWidth == 0) {
+          attackBox.innerText =
+            attackBox.innerText + `\n Charizard fainted...You Win!`;
+          pokeMeSprite.classList.remove("idle");
+          pokePonentSprite.style.display = "none";
+          music.pause();
+          musicWin.play();
+          const moveWrapper = document.querySelector(".moves");
+          moveWrapper.innerHTML = "<button class='reset'>PLAY AGAIN?</button>";
+          const reset = document.querySelector(".reset");
+          reset.addEventListener("click", () => {
+            window.location.reload();
+          });
+        } else {
+          setTimeout(() => {
+            pokePonentSprite.classList.remove("idle");
+            pokeMeSprite.classList.remove("idle");
+            const oppMove = pokePonent.moves[Math.floor(Math.random() * 3)];
+            console.log(oppMove);
+            attackBox.innerText = `Charizard used ${oppMove.name}.`;
+            pokeMeSprite.classList.remove("attackMe");
+            pokePonentSprite.classList.remove("damage");
+            pokeMeSprite.classList.add("damage");
+            pokePonentSprite.classList.add("attackOp");
+            if (oppMove.name === "flamethrower") {
+              // console.log(typeof hpLeft.offsetWidth);
+              meHpLeft.style.width = `${meHpLeft.offsetWidth - 16}px`;
+              attackBox.innerText =
+                attackBox.innerText + ` Not very effective!`;
+            } else {
+              if (meHpLeft.offsetWidth > 16) {
+                meHpLeft.style.width = `${meHpLeft.offsetWidth - 32}px`;
+              } else {
+                meHpLeft.style.width = `${meHpLeft.offsetWidth - 16}px`;
+              }
+            }
+            //return to idle
+            setTimeout(() => {
+              pokePonentSprite.classList.add("idle");
+              pokeMeSprite.classList.add("idle");
+            }, 1000);
+            if (meHpLeft.offsetWidth == 0) {
+              attackBox.innerText =
+                attackBox.innerText + `\n Blastoise fainted...You Lose!`;
+              const moveWrapper = document.querySelector(".moves");
+              moveWrapper.innerHTML =
+                "<button class='reset'>PLAY AGAIN?</button>";
+              music.pause();
+              musicLoss.play();
+              pokePonentSprite.classList.remove("idle");
+              pokeMeSprite.style.display = "none";
+              const reset = document.querySelector(".reset");
+              reset.addEventListener("click", () => {
+                window.location.reload();
+              });
+            }
+          }, 2000);
+        }
+      });
+    });
   })
-  // move1.innerText = `${pokeMe.moves[0].name.toUpperCase()} \n Power: ${
-  //   pokeMe.moves[0].power
-  // } \n PP: ${pokeMe.moves[0].pp}`;
-  // move1.classList.add(pokeMe.moves[0].type);
-  // move2.innerText = `${pokeMe.moves[1].name.toUpperCase()} \n Power: ${
-  //   pokeMe.moves[1].power
-  // } \n PP: ${pokeMe.moves[1].pp}`;
-  // move2.classList.add(pokeMe.moves[1].type);
-  // move3.innerText = `${pokeMe.moves[2].name.toUpperCase()} \n Power: ${
-  //   pokeMe.moves[2].power
-  // } \n PP: ${pokeMe.moves[2].pp}`;
-  // move3.classList.add(pokeMe.moves[2].type);
-  // move4.innerText = `${pokeMe.moves[3].name.toUpperCase()} \n Power: ${
-  //   pokeMe.moves[3].power
-  // } \n PP: ${pokeMe.moves[3].pp}`;
-  // move4.classList.add(pokeMe.moves[3].type);
-  //   })
+
   .catch((error) => {
     console.log(error);
   });
+const choice = document.querySelector(".choice");
+const movesOptions = document.querySelector(".moves");
+const start = document.querySelector(".start-button");
+const music = document.querySelector(".music-battle");
+const musicWin = document.querySelector(".music-win");
+const musicLoss = document.querySelector(".music-loss");
+const power = document.querySelector(".power-on");
+start.addEventListener("click", () => {
+  start.style.display = "none";
+  choice.style.display = "block";
+  movesOptions.style.display = "flex";
+  music.play();
+});

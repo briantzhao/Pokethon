@@ -2,24 +2,72 @@
   font-family: "PokeFont";
   src: url("../assets/fonts/PKMN RBYGSC.ttf");
 }
-@-webkit-keyframes pokemonMove {
+@-webkit-keyframes pokemonMoveMe {
   33% {
-    right: 10px;
+    right: 20px;
   }
   66% {
-    left: 10px;
+    left: 20px;
     right: 0px;
   }
   100% {
     left: 0px;
   }
 }
-@keyframes pokemonMove {
+@keyframes pokemonMoveMe {
   33% {
-    right: 10px;
+    right: 20px;
   }
   66% {
-    left: 10px;
+    left: 20px;
+    right: 0px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+@-webkit-keyframes pokemonMoveOp {
+  33% {
+    left: 20px;
+  }
+  66% {
+    right: 20px;
+    left: 0px;
+  }
+  100% {
+    right: 0px;
+  }
+}
+@keyframes pokemonMoveOp {
+  33% {
+    left: 20px;
+  }
+  66% {
+    right: 20px;
+    left: 0px;
+  }
+  100% {
+    right: 0px;
+  }
+}
+@-webkit-keyframes pokemonIdle {
+  33% {
+    right: 5px;
+  }
+  66% {
+    left: 5px;
+    right: 0px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+@keyframes pokemonIdle {
+  33% {
+    right: 5px;
+  }
+  66% {
+    left: 5px;
     right: 0px;
   }
   100% {
@@ -60,76 +108,57 @@
   font-family: "PokeFont";
 }
 
-.gamescreen {
-  width: 40vw;
-  height: 20vw;
-  border: 1px solid black;
-  margin: 10vw auto;
-  margin-bottom: 0;
-  position: relative;
-  padding: 1rem;
-}
-
-.hpbar, .me-hpbar {
-  border: 1px solid black;
-  width: 15vw;
-  height: 1rem;
-  position: relative;
-}
-
 .pokeponent {
   position: absolute;
   top: 0;
   right: 0;
   margin: 1rem;
+  margin-top: 5rem;
   display: flex;
 }
-.pokeponent-pic {
+.pokeponent--pic {
   position: relative;
 }
-.pokeponent-pic:hover {
-  -webkit-animation: pokemonDamage 0.5s;
-          animation: pokemonDamage 0.5s;
+.pokeponent--hpbar, .pokeme--hpbar {
+  border: 1px solid black;
+  width: 10rem;
+  height: 1rem;
+  position: relative;
+  background-color: white;
+}
+.pokeponent--hpleft, .pokeme--hpleft {
+  position: absolute;
+  width: 10rem;
+  height: 1rem;
+  background-color: green;
 }
 
 .pokeme {
   position: absolute;
   bottom: 0;
   left: 0;
-  margin: 1rem;
   display: flex;
   width: 100%;
 }
-.pokeme-pic {
+.pokeme--pic {
   position: relative;
 }
-.pokeme-pic:hover {
-  -webkit-animation: pokemonDamage 0.5s;
-          animation: pokemonDamage 0.5s;
-}
-
-.hpleft, .me-hpleft {
-  position: absolute;
-  width: 15vw;
-  height: 1rem;
-  background-color: green;
-}
-
 .combat-log {
-  width: 40vw;
-  height: 10vw;
+  width: 30rem;
+  height: 105px;
   margin: 0 auto;
   border: 1px solid black;
+  padding: 1rem;
 }
 
 .moves {
-  display: flex;
   justify-content: space-between;
-  width: 40vw;
-  height: 10vw;
+  width: 25rem;
+  height: 135px;
   margin: 0 auto;
-  margin-bottom: 10vw;
   flex-wrap: wrap;
+  display: none;
+  cursor: pointer;
 }
 
 .move1,
@@ -142,13 +171,16 @@
 }
 
 .choice {
-  width: 40vw;
+  width: 25rem;
   margin: 0 auto;
   text-align: center;
+  margin-top: 0.4rem;
+  background-color: white;
+  display: none;
 }
 
 .water {
-  background-color: blue;
+  background-color: #9bb8fe;
 }
 
 .fire {
@@ -156,15 +188,15 @@
 }
 
 .normal {
-  background-color: moccasin;
+  background-color: #e0e0cf;
 }
 
 .ground {
-  background-color: brown;
+  background-color: #f9d2b6;
 }
 
 .ice {
-  background-color: aqua;
+  background-color: #bdf3f3;
 }
 
 .flying {
@@ -173,4 +205,70 @@
 
 .fighting {
   background-color: sandybrown;
+}
+
+.damage {
+  -webkit-animation: pokemonDamage 0.5s;
+          animation: pokemonDamage 0.5s;
+}
+
+.attackMe {
+  -webkit-animation: pokemonMoveMe 1s;
+          animation: pokemonMoveMe 1s;
+}
+
+.attackOp {
+  -webkit-animation: pokemonMoveMe 1s;
+          animation: pokemonMoveMe 1s;
+}
+
+.gameboy {
+  background-image: url("../assets/images/3608777-middle.png");
+  background-size: cover;
+  width: 50rem;
+  margin: 0 auto;
+  padding-top: 7rem;
+  height: 100%;
+}
+.gameboy__gamescreen {
+  width: 30rem;
+  height: 20rem;
+  background-image: url("../assets/images/background.png");
+  background-size: cover;
+  margin: 0 auto;
+  position: relative;
+  padding: 1rem;
+}
+
+.start-button {
+  width: 100%;
+  height: 100%;
+}
+
+.music {
+  display: none;
+}
+
+.reset {
+  width: 100%;
+  height: 100%;
+}
+
+.power-on {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  left: 21.25rem;
+  bottom: 29.25rem;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.hide {
+  display: none;
+}
+
+.idle {
+  -webkit-animation: pokemonIdle 1s infinite;
+          animation: pokemonIdle 1s infinite;
 }/*# sourceMappingURL=main.css.map */
