@@ -50,30 +50,6 @@
     right: 0px;
   }
 }
-@-webkit-keyframes pokemonIdle {
-  33% {
-    right: 5px;
-  }
-  66% {
-    left: 5px;
-    right: 0px;
-  }
-  100% {
-    left: 0px;
-  }
-}
-@keyframes pokemonIdle {
-  33% {
-    right: 5px;
-  }
-  66% {
-    left: 5px;
-    right: 0px;
-  }
-  100% {
-    left: 0px;
-  }
-}
 @-webkit-keyframes pokemonDamage {
   25% {
     opacity: 100;
@@ -268,9 +244,4 @@
 
 .hide {
   display: none;
-}
-
-.idle {
-  -webkit-animation: pokemonIdle 1s infinite;
-          animation: pokemonIdle 1s infinite;
 }/*# sourceMappingURL=main.css.map */

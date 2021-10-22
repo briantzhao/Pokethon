@@ -26,18 +26,18 @@
     right: 0px;
   }
 }
-@keyframes pokemonIdle {
-  33% {
-    right: 5px;
-  }
-  66% {
-    left: 5px;
-    right: 0px;
-  }
-  100% {
-    left: 0px;
-  }
-}
+// @keyframes pokemonIdle {
+//   33% {
+//     right: 5px;
+//   }
+//   66% {
+//     left: 5px;
+//     right: 0px;
+//   }
+//   100% {
+//     left: 0px;
+//   }
+// }
 @keyframes pokemonDamage {
   25% {
     opacity: 100;
@@ -209,6 +209,6 @@
 .hide {
   display: none;
 }
-.idle {
-  animation: pokemonIdle 1s infinite;
-}
+// .idle {
+//   animation: pokemonIdle 1s infinite;
+// }

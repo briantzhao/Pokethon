@@ -139,8 +139,6 @@ axios
       }`;
       moveBox.classList.add(move.type);
       moveBox.addEventListener("click", (event) => {
-        pokePonentSprite.classList.remove("idle");
-        pokeMeSprite.classList.remove("idle");
         console.log(move);
         attackBox.innerText = `Blastoise used ${move.name}. `;
         const moveNum = event.target.classList[0].slice(-1) - 1;
@@ -165,17 +163,11 @@ axios
           pokePonentSprite.classList.add("damage");
           hpLeft.style.width = `${hpLeft.offsetWidth - 32}px`;
         }
-        //return to idle
-        setTimeout(() => {
-          pokePonentSprite.classList.add("idle");
-          pokeMeSprite.classList.add("idle");
-        }, 1000);
         pokeMeSprite.classList.remove("damage");
         pokePonentSprite.classList.remove("attackOp");
         if (hpLeft.offsetWidth == 0) {
           attackBox.innerText =
             attackBox.innerText + `\n Charizard fainted...You Win!`;
-          pokeMeSprite.classList.remove("idle");
           pokePonentSprite.style.display = "none";
           music.pause();
           musicWin.play();
@@ -187,8 +179,6 @@ axios
           });
         } else {
           setTimeout(() => {
-            pokePonentSprite.classList.remove("idle");
-            pokeMeSprite.classList.remove("idle");
             const oppMove = pokePonent.moves[Math.floor(Math.random() * 3)];
             console.log(oppMove);
             attackBox.innerText = `Charizard used ${oppMove.name}.`;
@@ -208,11 +198,7 @@ axios
                 meHpLeft.style.width = `${meHpLeft.offsetWidth - 16}px`;
               }
             }
-            //return to idle
-            setTimeout(() => {
-              pokePonentSprite.classList.add("idle");
-              pokeMeSprite.classList.add("idle");
-            }, 1000);
+
             if (meHpLeft.offsetWidth == 0) {
               attackBox.innerText =
                 attackBox.innerText + `\n Blastoise fainted...You Lose!`;
@@ -221,7 +207,6 @@ axios
                 "<button class='reset'>PLAY AGAIN?</button>";
               music.pause();
               musicLoss.play();
-              pokePonentSprite.classList.remove("idle");
               pokeMeSprite.style.display = "none";
               const reset = document.querySelector(".reset");
               reset.addEventListener("click", () => {
