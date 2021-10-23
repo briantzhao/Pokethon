@@ -51,7 +51,7 @@ let pokeMe;
 axios
   .get(`${apiURL}pokemon/charizard/`)
   .then((response) => {
-    console.log(response.data);
+    console.log("api call for opponent data", response.data);
     pokePonentSprite.src = response.data.sprites.front_default;
     const pokePonentMoves = movesBank[response.data.name];
 
@@ -61,7 +61,7 @@ axios
       response.data.stats,
       response.data.types
     );
-
+    console.log("all of opponent data other than moves", pokePonent);
     //grab data for all moves for charizard
     return Promise.all(
       pokePonentMoves.map((move) => {
@@ -70,7 +70,7 @@ axios
     );
   })
   .then((responses) => {
-    console.dir(responses);
+    console.log("api call for opponent moves information", responses);
     //filter move data so we get the pieces we need
     const pokePonentMoveset = responses.map((response) => {
       const createdMove = new Move(
@@ -81,10 +81,11 @@ axios
       );
       return createdMove;
     });
-    console.dir(pokePonentMoveset);
+    console.log("process api moves call to filter info", pokePonentMoveset);
 
     //insert moves data to opponent object
     pokePonent.moves = pokePonentMoveset;
+    console.log("completed opponent object", pokePonent);
   })
   .catch((error) => {
     console.log(error);
@@ -94,7 +95,7 @@ axios
 axios
   .get(`${apiURL}pokemon/blastoise/`)
   .then((response) => {
-    console.log(response.data);
+    console.log("api call for player data", response.data);
     pokeMeSprite.src = response.data.sprites.back_default;
     const pokePonentMoves = movesBank[response.data.name];
 
@@ -104,7 +105,7 @@ axios
       response.data.stats,
       response.data.types
     );
-
+    console.log("all of player data other than moves", pokeMe);
     //grab data for all moves for blastoise
     return Promise.all(
       pokePonentMoves.map((move) => {
@@ -115,7 +116,7 @@ axios
 
   //filter moves info we need
   .then((responses) => {
-    console.dir(responses);
+    console.log("api call for opponent moves information", responses);
     const pokePonentMoveset = responses.map((response) => {
       const createdMove = new Move(
         response.data.name,
@@ -125,10 +126,10 @@ axios
       );
       return createdMove;
     });
-
+    console.log("process api moves call to filter info", pokePonentMoveset);
     //insert moves data for player (borrowed variables from above call)
     pokeMe.moves = pokePonentMoveset;
-
+    console.log("completed player object", pokeMe);
     let i = 1;
 
     pokeMe.moves.forEach((move) => {
@@ -235,3 +236,26 @@ start.addEventListener("click", () => {
   movesOptions.style.display = "flex";
   music.play();
 });
+
+const volumeOn = document.querySelector(".volume--on");
+const volumeMute = document.querySelector(".volume--mute");
+volumeOn.addEventListener("click", () => {
+  music.volume = 1.0;
+  musicWin.volume = 1.0;
+  musicLoss.volume = 1.0;
+});
+volumeMute.addEventListener("click", () => {
+  music.volume = 0;
+  musicWin.volume = 0;
+  musicLoss.volume = 0;
+});
+
+// function playMusic() {
+//   console.log("inside playAudio");
+//   music.play();
+// }
+
+// function pauseMusic() {
+//   console.log("inside pauseAudio");
+//   music.pause();
+// }

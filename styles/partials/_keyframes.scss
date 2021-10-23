@@ -1,0 +1,50 @@
+@keyframes pokemonMoveMe {
+	33% {
+		right: 20px;
+	}
+	66% {
+		left: 20px;
+		right: 0px;
+	}
+	100% {
+		left: 0px;
+	}
+}
+@keyframes pokemonMoveOp {
+	33% {
+		left: 20px;
+	}
+	66% {
+		right: 20px;
+		left: 0px;
+	}
+	100% {
+		right: 0px;
+	}
+}
+// @keyframes pokemonIdle {
+//   33% {
+//     right: 5px;
+//   }
+//   66% {
+//     left: 5px;
+//     right: 0px;
+//   }
+//   100% {
+//     left: 0px;
+//   }
+// }
+@keyframes pokemonDamage {
+	25% {
+		opacity: 100;
+	}
+	50% {
+		opacity: 0;
+	}
+	75% {
+		opacity: 100;
+	}
+	100% {
+		opacity: 0;
+	}
+}

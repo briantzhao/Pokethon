@@ -1,75 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <link rel="stylesheet" href="styles/main.css" />
-    <link rel="shortcut icon" href="#" />
-  </head>
-  <body>
-    <div class="gameboy">
-      <!-- game screen -->
-      <div class="gameboy__gamescreen">
-        <!-- opponent -->
-        <div class="pokeponent">
-          <div class="pokeponent__container">
-            <p class="pokeponent--name">
-              Charizard <span class="pokeponent--lvl">L50</span>
-            </p>
-            <div class="pokeponent--hpbar">
-              <div class="pokeponent--hpleft"></div>
-            </div>
-          </div>
-          <img class="pokeponent--pic" />
-        </div>
-        <!-- player -->
-        <div class="pokeme">
-          <div class="pokeme__container">
-            <p class="pokeme--name">
-              Blastoise <span class="pokeme--lvl">L50</span>
-            </p>
-            <div class="pokeme--hpbar"><div class="pokeme--hpleft"></div></div>
-          </div>
-          <img class="pokeme--pic" />
-        </div>
-      </div>
-      <!-- combat log -->
-      <div class="combat-log">
-        <p class="attack"></p>
-        <button class="start-button">START</button>
-      </div>
-      <!-- pokemon moves -->
-      <h2 class="choice">Choose Your Move</h2>
-      <div class="moves">
-        <p class="move1"></p>
-        <p class="move2"></p>
-        <p class="move3"></p>
-        <p class="move4"></p>
-      </div>
-    </div>
-    <!-- <div class="power-on hide"></div> -->
-    <audio controls class="music music-battle">
-      <source
-        src="./assets/music/28 Battle! (Gym Leader Battle).mp3"
-        type="audio/mpeg"
-      />
-      Your browser does not support the audio element.
-    </audio>
-    <audio controls class="music music-win">
-      <source
-        src="./assets/music/12 Victory! (Trainer Battle).mp3"
-        type="audio/mpeg"
-      />
-      Your browser does not support the audio element.
-    </audio>
-    <audio controls class="music music-loss">
-      <source src="./assets/music/45 Pok‚mon Tower.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Pokethon!</title>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<link rel="stylesheet" href="styles/main.css" />
+		<link rel="shortcut icon" href="#" />
+	</head>
+	<body>
+		<header class="header">
+			<div class="header__container">
+				<h1 class="header__title">Gotta Catch 'em All!</h1>
+				<img src="./assets/images/PikPng.com_pokemon-go-logo-png_319697.png" />
+			</div>
+		</header>
+		<div class="gameboy">
+			<!-- game screen -->
+			<div class="gameboy__gamescreen">
+				<!-- opponent -->
+				<div class="pokeponent">
+					<div class="pokeponent__container">
+						<p class="pokeponent--name">
+							Charizard <span class="pokeponent--lvl">L50</span>
+						</p>
+						<div class="pokeponent--hpbar">
+							<div class="pokeponent--hpleft"></div>
+						</div>
+					</div>
+					<img class="pokeponent--pic" />
+				</div>
+				<!-- player -->
+				<div class="pokeme">
+					<div class="pokeme__container">
+						<p class="pokeme--name">
+							Blastoise <span class="pokeme--lvl">L50</span>
+						</p>
+						<div class="pokeme--hpbar"><div class="pokeme--hpleft"></div></div>
+					</div>
+					<img class="pokeme--pic" />
+				</div>
+			</div>
+			<!-- combat log -->
+			<div class="combat-log">
+				<p class="attack"></p>
+				<button class="start-button">START</button>
+			</div>
+			<!-- pokemon moves -->
+			<h2 class="choice">Choose Your Move</h2>
+			<div class="moves">
+				<p class="move1"></p>
+				<p class="move2"></p>
+				<p class="move3"></p>
+				<p class="move4"></p>
+			</div>
+		</div>
+		<div class="volume">
+			<h2>Volume</h2>
+			<div class="volume--on"></div>
+			<div class="volume--mute"></div>
+		</div>
+		<audio controls class="music music-battle">
+			<source
+				src="./assets/music/28 Battle! (Gym Leader Battle).mp3"
+				type="audio/mpeg"
+			/>
+			Your browser does not support the audio element.
+		</audio>
+		<audio controls class="music music-win">
+			<source
+				src="./assets/music/12 Victory! (Trainer Battle).mp3"
+				type="audio/mpeg"
+			/>
+			Your browser does not support the audio element.
+		</audio>
+		<audio controls class="music music-loss">
+			<source src="./assets/music/45 Pok‚mon Tower.mp3" type="audio/mpeg" />
+			Your browser does not support the audio element.
+		</audio>
 
-    <script src="script.js"></script>
-  </body>
+		<script src="script.js"></script>
+	</body>
 </html>

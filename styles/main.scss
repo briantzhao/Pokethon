@@ -1,62 +1,21 @@
+@use "./partials/keyframes" as *;
+
 @font-face {
   font-family: "PokeFont";
   src: url("../assets/fonts/PKMN\ RBYGSC.ttf");
 }
-@keyframes pokemonMoveMe {
-  33% {
-    right: 20px;
-  }
-  66% {
-    left: 20px;
-    right: 0px;
-  }
-  100% {
-    left: 0px;
-  }
-}
-@keyframes pokemonMoveOp {
-  33% {
-    left: 20px;
-  }
-  66% {
-    right: 20px;
-    left: 0px;
-  }
-  100% {
-    right: 0px;
-  }
-}
-// @keyframes pokemonIdle {
-//   33% {
-//     right: 5px;
-//   }
-//   66% {
-//     left: 5px;
-//     right: 0px;
-//   }
-//   100% {
-//     left: 0px;
-//   }
-// }
-@keyframes pokemonDamage {
-  25% {
-    opacity: 100;
-  }
-  50% {
-    opacity: 0;
-  }
-  75% {
-    opacity: 100;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
   font-family: "PokeFont";
+}
+
+body {
+  background-image: url("../assets/images/background-pokemon.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
 }
 
 .pokeponent {
@@ -176,6 +135,7 @@
   margin: 0 auto;
   padding-top: 7rem;
   height: 100%;
+  border-radius: 15px;
   &__gamescreen {
     width: 30rem;
     height: 20rem;
@@ -209,6 +169,62 @@
 .hide {
   display: none;
 }
-// .idle {
-//   animation: pokemonIdle 1s infinite;
-// }
+
+.volume {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2.25rem;
+  &--on {
+    margin: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgb(42, 189, 57);
+    background: radial-gradient(
+      circle,
+      rgba(42, 189, 57, 1) 0%,
+      rgba(28, 125, 38, 1) 65%
+    );
+    border-radius: 50%;
+    // Transition me!
+    transition: 0.5s;
+    &:hover {
+      // Style me!
+      cursor: pointer;
+      filter: brightness(130%);
+    }
+  }
+  &--mute {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgb(189, 42, 42);
+    background: radial-gradient(
+      circle,
+      rgba(189, 42, 42, 1) 0%,
+      rgba(125, 28, 28, 1) 65%
+    );
+    border-radius: 50%;
+    // Transition me!
+    transition: 0.5s;
+    &:hover {
+      // Style me!
+      cursor: pointer;
+      filter: brightness(130%);
+    }
+  }
+}
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__container {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+  & img {
+    height: 10vw;
+  }
+}
